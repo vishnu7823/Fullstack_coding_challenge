@@ -1,16 +1,14 @@
-const validators = require('express-vaildator');
+const nameValid = name => typeof name === 'string' && name.length >= 20 && name.length <= 60;
 
-const nameValid = name=> typeof name==='String' && name.length>=20 && name.length<=60;
+const addressValid = address => typeof address === 'string' && address.length <= 400;
 
-const addressValid = address=> typeof address == 'String' && address.length<=400;
+const emailValid = email => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-const emailValid = email=> /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-const passwordValid = password=> {
-  if (typeof pwd !== 'string') return false;
-  if (pwd.length < 8 || pwd.length > 16) return false;
-  // at least 1 uppercase and 1 special char
-  return /[A-Z]/.test(pwd) && /[^A-Za-z0-9]/.test(pwd);
+const passwordValid = password => {
+    if (typeof password !== 'string') return false;
+    if (password.length < 8 || password.length > 16) return false;
+    // at least 1 uppercase and 1 special char
+    return /[A-Z]/.test(password) && /[^A-Za-z0-9]/.test(password);
 };
 
 module.exports = {
@@ -18,4 +16,4 @@ module.exports = {
     addressValid,
     emailValid,
     passwordValid
-}
+};
